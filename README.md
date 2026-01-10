@@ -46,89 +46,90 @@ pip install pywin32
 # pip install scssdk
 
 
-🛠️ How it works (Simple)
+## 🛠️ How it works (Simple)
 
-Reads telemetry data (RPM) from SCS SDK / shared memory
-Maps RPM value → vibration strength (0–65535 range for XInput)
-Sends rumble commands to your controller via pywin32 / XInput
+1. Reads telemetry data (RPM) from SCS SDK / shared memory
+2. Maps RPM value → vibration strength (0–65535 range for XInput)
+3. Sends rumble commands to your controller via pywin32 / XInput
 
+## 🚀 Quick Setup Guide
 
-
-🚀 Quick Setup Guide
 This guide helps you get the vibration running in ETS2 or ATS in under 10 minutes.
-1. Download the Python Script
 
-Go to: https://github.com/afifshowfeer/rpm-haptics-ets2-ats
-Click Code → Download ZIP (or clone with Git)
-Extract to any folder (e.g. C:\MyProjects\TruckVibration)
+### 1. Download the Python Script
 
-2. Download & Install the SCS Telemetry SDK Plugin
+- Go to: https://github.com/afifshowfeer/rpm-haptics-ets2-ats
+- Click **Code** → **Download ZIP** (or clone with Git)
+- Extract to any folder (e.g. `C:\MyProjects\TruckVibration`)
+
+### 2. Download & Install the SCS Telemetry SDK Plugin
+
 The game needs a DLL plugin to share telemetry data.
-Recommended (2025/2026 compatible):
 
-Go to: https://github.com/RenCloud/scs-sdk-plugin
-Download the latest DLL from Releases (usually scs-sdk-plugin.dll)
+**Recommended (2025/2026 compatible):**
+- Go to: https://github.com/RenCloud/scs-sdk-plugin
+- Download the latest DLL from Releases (usually `scs-sdk-plugin.dll`)
 
-Alternative sources:
+**Alternative sources:**
+- https://github.com/nlhans/ets2-sdk-plugin/releases
+- https://github.com/Funbit/ets2-telemetry-server (includes DLL)
 
-https://github.com/nlhans/ets2-sdk-plugin/releases
-https://github.com/Funbit/ets2-telemetry-server (includes DLL)
+**Installation steps:**
 
-Installation steps:
+1. Find your game folder (default Steam paths):
+   - **ETS2:** `C:\Program Files (x86)\Steam\steamapps\common\Euro Truck Simulator 2`
+   - **ATS:** `C:\Program Files (x86)\Steam\steamapps\common\American Truck Simulator`
 
-Find your game folder (default Steam paths):
-ETS2: C:\Program Files (x86)\Steam\steamapps\common\Euro Truck Simulator 2
-ATS:  C:\Program Files (x86)\Steam\steamapps\common\American Truck Simulator
+2. Go to `bin\win_x64` (use `win_x86` only if 32-bit – rare)
 
-Go to bin\win_x64 (use win_x86 only if 32-bit – rare)
-Create folder plugins if it doesn't exist
-Copy the DLL into: ...\bin\win_x64\plugins\
+3. Create folder `plugins` if it doesn't exist
+
+4. Copy the DLL into: `...\bin\win_x64\plugins\`
 
 → Start the game once → you should see "SDK plugin loaded" message
-3. Install Python Dependencies (One-time)
+
+### 3. Install Python Dependencies (One-time)
+
 Open Command Prompt / PowerShell in your script folder and run:
-Bashpip install pywin32
-4. Run the Script & Play!
+```bash
+pip install pywin32
+```
 
-Connect your controller (make sure vibration works in Windows)
-Start ETS2 or ATS first (important!)
-In your script folder run:
+### 4. Run the Script & Play!
 
-Bashpython truck-haptics.py
+1. Connect your controller (make sure vibration works in Windows)
+2. Start ETS2 or ATS first (important!)
+3. In your script folder run:
+```bash
+python truck-haptics.py
+```
 
-Vibration behavior:
-
-Starts automatically when engine is running
-Gentle at idle/low RPM
-Stronger at high revs
-Stops completely if:
-Engine is turned off
-Game is paused (Esc menu)
-You exit the game
-
+**Vibration behavior:**
+- Starts automatically when engine is running
+- Gentle at idle/low RPM
+- Stronger at high revs
+- Stops completely if:
+  - Engine is turned off
+  - Game is paused (Esc menu)
+  - You exit the game
 
 Enjoy the extra immersion! 🚛💨
 
+## Troubleshooting Tips
 
-Troubleshooting Tips
+- **No vibration?** → Test in Windows "Set up USB game controllers" → check rumble there
+- **Script can't find game?** → Run game first, try script as Administrator
+- **DLL not loading?** → Use 64-bit version for modern Windows/ETS2
+- **Still issues?** → Check console output and share errors
 
-No vibration? → Test in Windows "Set up USB game controllers" → check rumble there
-Script can't find game? → Run game first, try script as Administrator
-DLL not loading? → Use 64-bit version for modern Windows/ETS2
-Still issues? → Check console output and share errors
+## 🙌 Contributing
 
+Pull requests are welcome! Ideas:
+- Linux/macOS support
+- Better deadzone / curve mapping
+- Support for more wheels/controllers
 
+---
 
-🙌 Contributing
-Pull requests are welcome!
-Ideas:
-
-Linux/macOS support
-Better deadzone / curve mapping
-Support for more wheels/controllers
-
-
-
-
-  Made with ❤️ for all truckers out there
-  Happy trucking & rumbling! 🛣️🔊
+Made with ❤️ for all truckers out there  
+Happy trucking & rumbling! 🛣️🔊
