@@ -37,13 +37,7 @@ This Python script reads your **truck's engine RPM** in real-time from **Euro Tr
 - **SCS SDK** enabled in game (see Setup below)
 - Game running in **windowed** or **borderless** mode (recommended)
 - Controller connected & recognized by Windows
-
-**Python packages** (install with `pip`):
-
-
-pip install pywin32
-# Optional - if your script uses it:
-# pip install scssdk
+):
 
 
 ## 🛠️ How it works (Simple)
