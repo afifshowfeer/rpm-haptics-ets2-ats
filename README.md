@@ -40,7 +40,7 @@ This Python script reads your **truck's engine RPM** in real-time from **Euro Tr
 
 **Python packages** (install with `pip`):
 
-```bash
+
 pip install pywin32
 # Optional - if your script uses it:
 # pip install scssdk
