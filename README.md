@@ -1,136 +1,80 @@
 <div align="center">
-  <h1>🎮 TruckSim Wheel Vibration (RPM-Based)</h1>
-  <p><strong>Realistic controller rumble based on your truck's engine RPM</strong><br>Works with ETS2 & ATS</p>
-  
-  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
+  <h1>🎮 TruckSim Realistic Engine Rumble V2</h1>
+  <p><strong>High-Performance Native Plugin • C++</strong><br>
+  Realistic controller vibration for ETS2 & ATS</p>
+
+  <img src="https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white" alt="C++"/>
   <img src="https://img.shields.io/badge/ETS2-232F3E?style=for-the-badge&logo=steam&logoColor=white" alt="ETS2"/>
   <img src="https://img.shields.io/badge/ATS-232F3E?style=for-the-badge&logo=steam&logoColor=white" alt="ATS"/>
-  <img src="https://img.shields.io/badge/Controller-Rumble-green?style=for-the-badge" alt="Rumble"/>
+  <img src="https://img.shields.io/badge/XInput-Rumble-green?style=for-the-badge" alt="Rumble"/>
 </div>
 
 <br>
 
-## ✨ What it does
+## ✨ What's New in V2
 
-This Python script reads your **truck's engine RPM** in real-time from **Euro Truck Simulator 2** or **American Truck Simulator** and translates it into **vibration/rumble feedback** on your controller (wheel or gamepad).
+**Major Upgrade:** Fully rewritten in **C++** as a **native SCS plugin** (`.dll`).
 
-- Idle → gentle vibration  
-- Revving / high RPM → strong, aggressive rumble  
-- Perfect for adding immersion with wheels like Logitech G29/G920, Thrustmaster, or even Xbox/PS controllers!
+### Key Improvements:
+- Much better performance (60 FPS smooth)
+- Lower latency
+- More stable
+  
+## 🎯 Features
 
-<br>
+- Realistic diesel idle chugging (alternating motors)
+- Power band strain & high-RPM buzz
+- Throttle load sensitivity
+- Road rumble based on speed
+- Strong gear shift kicks
+- Engine start & stop animations (2-second transitions)
+- Acceleration/braking jolts
+- Smart engine off guard (no ghost vibration)
+- Low-pass filters + deadzone for smoothness
 
-## 🎮 Features
+## 📥 Installation (Super Simple)
 
-- Real-time RPM → vibration mapping
-- Adjustable vibration intensity & sensitivity
-- Supports **ETS2** and **ATS**
-- Works with most controllers that support vibration (XInput compatible)
-- Lightweight & low CPU usage
+1. Download the latest **`.dll`** from Releases
+2. Copy it to:
+   - **ETS2**: `...\Euro Truck Simulator 2\bin\win_x64\plugins\`
+   - **ATS**: `...\American Truck Simulator\bin\win_x64\plugins\`
+3. (Create the `plugins` folder if it doesn't exist)
+4. Start the game
 
-<br>
+**No Python, no extra programs needed.**
+
+## 🎮 How to Use
+
+- Just drive normally
+- Vibration activates automatically when the engine is running
+- Works with any XInput-compatible controller ( Primarly Xbox controllers).
 
 ## 📋 Requirements
 
-- Python 3.8+
-- Windows (tested on Win10/11)
-- **SCS SDK** enabled in game (see Setup below)
-- Game running in **windowed** or **borderless** mode (recommended)
-- Controller connected & recognized by Windows
+- ETS2 or ATS (latest version recommended)
+- Windows 10/11 (64-bit)
+- Controller with vibration support
 
-## Demo
+## 🔧 For Developers
 
+Source code is included. Feel Free to make changes.
 
+## 📝 Changelog
 
-https://github.com/user-attachments/assets/879520ab-efc9-47fa-a598-7a04ada9c2f5
+### V2.0 (Current)
+- Complete rewrite in C++
+- Native plugin (no external Python script)
+- Improved smoothing & timing
+- Better engine start/stop behavior
+- More accurate gear shift detection
+- Optimized performance
 
+### V1.0
+- Original Python version
 
-
-
-## 🛠️ How it works (Simple)
-
-1. Reads telemetry data (RPM) from SCS SDK / shared memory
-2. Maps RPM value → vibration strength (0–65535 range for XInput)
-3. Sends rumble commands to your controller via pywin32 / XInput
-
-## 🚀 Quick Setup Guide
-
-This guide helps you get the vibration running in ETS2 or ATS in under 10 minutes.
-
-### 1. Download the Python Script
-
-- Go to: https://github.com/afifshowfeer/rpm-haptics-ets2-ats
-- Click **Code** → **Download ZIP** (or clone with Git)
-- Extract to any folder (e.g. `C:\MyProjects\TruckVibration`)
-
-### 2. Download & Install the SCS Telemetry SDK Plugin
-
-The game needs a DLL plugin to share telemetry data.
-
-**Recommended (2025/2026 compatible):**
-- Go to: https://github.com/RenCloud/scs-sdk-plugin
-- Download the latest DLL from Releases (usually `scs-sdk-plugin.dll`)
-
-**Alternative sources:**
-- https://github.com/nlhans/ets2-sdk-plugin/releases
-- https://github.com/Funbit/ets2-telemetry-server (includes DLL)
-
-**Installation steps:**
-
-1. Find your game folder (default Steam paths):
-   - **ETS2:** `C:\Program Files (x86)\Steam\steamapps\common\Euro Truck Simulator 2`
-   - **ATS:** `C:\Program Files (x86)\Steam\steamapps\common\American Truck Simulator`
-
-2. Go to `bin\win_x64` (use `win_x86` only if 32-bit – rare)
-
-3. Create folder `plugins` if it doesn't exist
-
-4. Copy the DLL into: `...\bin\win_x64\plugins\`
-
-→ Start the game once → you should see "SDK plugin loaded" message
-
-### 3. Install Python Dependencies (One-time)
-
-Open Command Prompt / PowerShell in your script folder and run:
-```bash
-pip install pywin32
-```
-
-### 4. Run the Script & Play!
-
-1. Connect your controller (make sure vibration works in Windows)
-2. Start ETS2 or ATS first (important!)
-3. In your script folder run:
-```bash
-python truck-haptics.py
-```
-
-**Vibration behavior:**
-- Starts automatically when engine is running
-- Gentle at idle/low RPM
-- Stronger at high revs
-- Stops completely if:
-  - Engine is turned off
-  - Game is paused (Esc menu)
-  - You exit the game
-
-Enjoy the extra immersion! 🚛💨
-
-## Troubleshooting Tips
-
-- **No vibration?** → Test in Windows "Set up USB game controllers" → check rumble there
-- **Script can't find game?** → Run game first, try script as Administrator
-- **DLL not loading?** → Use 64-bit version for modern Windows/ETS2
-- **Still issues?** → Check console output and share errors
-
-## 🙌 Contributing
-
-Pull requests are welcome! Ideas:
-- Linux/macOS support
-- Better deadzone / curve mapping
-- Support for more wheels/controllers
 
 ---
 
-Made with ❤️ for all truckers out there  
-Happy trucking & rumbling! 🛣️🔊
+**Made with ❤️ for the truck sim community**
+
+Happy trucking & rumbling! 🚛💨
